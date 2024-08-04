@@ -5,7 +5,6 @@
         Tu navegador no soporta el elemento de video.
     </video>
     
-    
     <div class="contenido">
         <h2 class="text-white">{{titulo}}</h2>
         <p class="text-white">{{cuerpo}}</p>
@@ -34,7 +33,7 @@
                 {{/if}}
                 {{#if video_url}}
                 <div class="video-container">
-                     <video class="img-fluid" controls>
+                     <video id="videoModal{{id}}" class="img-fluid" controls>
                         <source src="{{video_url}}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>

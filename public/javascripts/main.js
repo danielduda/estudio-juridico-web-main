@@ -1,5 +1,5 @@
 let menuVisible = false;
-//Función que oculta o muestra el menu
+//Función que oculta o muestra el menu responsive
 function mostrarOcultarMenu(){
     if(menuVisible){
         document.getElementById("nav").classList ="";
@@ -15,4 +15,15 @@ function seleccionar(){
     document.getElementById("nav").classList = "";
     menuVisible = false;
 }
+
+ 
+//Script para pausar los videos cuando el modal se cierra
+$(document).ready(function() {
+    $('.modal').on('hidden.bs.modal', function () {
+        $(this).find('video').each(function() {
+            this.pause();
+            this.currentTime = 0; // Reinicia el video al inicio si es necesario
+        });
+    });
+});
 

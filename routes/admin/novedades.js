@@ -154,12 +154,12 @@ enviamos una variable de error y el mensaje describiendo el mismo
 router.post('/modificar', async (req, res, next) => {
   try {
     let img_id = req.body.img_original;
-    let video_id = req.body.video_original;
+    let video_url = req.body.video_original;
     let borrar_img_vieja = false;
     let borrar_video_viejo = false;
 
     if (req.body.img_delete === "1") {
-      img_id = "null";
+      img_id = null;
       borrar_img_vieja = true;
     } else {
       if (req.files && req.files.imagen) {
@@ -170,12 +170,12 @@ router.post('/modificar', async (req, res, next) => {
     }
 
     if (req.body.video_delete === "1") {
-      video_id = "null";
+      video_url = null;
       borrar_video_viejo = true;
     } else {
       if (req.files && req.files.video) {
         let video = req.files.video;
-        video_id = (await uploader(video.tempFilePath, { resource_type: 'video' })).public_id;
+        video_url = (await uploader(video.tempFilePath, { resource_type: 'video' })).secure_url;
         borrar_video_viejo = true;
       }
     }
@@ -193,7 +193,7 @@ router.post('/modificar', async (req, res, next) => {
       subtitulo: req.body.subtitulo,
       cuerpo: req.body.cuerpo,
       img_id,
-      video_id
+      video_url
     };
 
     await novedadesModel.modificarNovedadById(obj, req.body.id);
