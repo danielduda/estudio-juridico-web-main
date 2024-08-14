@@ -98,18 +98,19 @@ app.post('/send-email', upload.single('archivo'), async (req, res) => {
     host: `smtp.gmail.com`,
     port: 587,
     auth: {
-      user: `danielosvaldoduda93@gmail.com`,
-      pass: `xxmg gnob vcjy tfwt` // Asegúrate de tener una contraseña de aplicación configurada en tu cuenta de Gmail
+      user: `estudiointegral.sociedad@gmail.com`,
+      pass: `h o bf h a w w x h r p i u s b` // Asegúrate de tener una contraseña de aplicación configurada en tu cuenta de Gmail
     }
   };
 
   var transporter = nodemailer.createTransport(config);
 
   var mailOptions = {
-    from: `danielosvaldoduda93@gmail.com`,
-    to: `danielosvaldoduda93@gmail.com`,
+    from: email,
+    to: `estudiointegral.sociedad@gmail.com`,
     subject: `Mensaje de contacto desde la web`,
     text: textoMensaje,
+    replyTo: email, // Correo del cliente para las respuestas
     attachments: archivo ? [{ path: archivo.path }] : []
 
   };
@@ -170,9 +171,6 @@ app.use(fileUpload({
 
 }));
 // Cierre inicio sesion
-
-
-
 
 
 
